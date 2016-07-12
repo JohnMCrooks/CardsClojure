@@ -23,10 +23,20 @@
   (let [suits (set (map :suit hand))]
     (= 1 (count suits))))
 
+(defn four-kind? [hand]
+  (let [ranks (set (map :rank hand))]
+    (= 1 (count ranks))))
+
+(defn three-kind? [hand])   ;come back to this
+  
+
 (defn -main []
   (let [deck (create-deck)
         deck (conj deck {:suit :spades :rank 1})  ;adding an already existing hand to the deck to make sure it's handling duplicates correctly
         hands (create-hands deck)
-        flushes (filter flush? hands)]
+        flushes (filter flush? hands)
+        ;flushes (conj flushes {:suit :spades :rank :1}) ;testing for duplicates
+        fours(filter four-kind? hands)]
     (count flushes)))
+    
    
